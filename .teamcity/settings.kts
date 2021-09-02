@@ -23,5 +23,8 @@ class HelloWorld(val dummy: String) : BuildType({
         script {
             scriptContent = "echo 'Hello world!'"
         }
+        script {
+            scriptContent = "echo 'Hello again world!'"
+        }
    }
 })
