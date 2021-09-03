@@ -4,12 +4,8 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 
 version = "2021.1"
 
-val dummies = listOf(Dummy("Foo", "foo"))
-
 project {
-   for (dummy in dummies) {
-        buildType(HelloWorld(dummy))
-   }
+   buildType(HelloWorld(Dummy("Foo", "foo")))
 }
 
 class HelloWorld(val dummy: Dummy) : BuildType({
@@ -22,16 +18,7 @@ class HelloWorld(val dummy: Dummy) : BuildType({
 
    steps {
         script {
-            scriptContent = "echo 'Hello world!'"
-        }
-        script {
-            scriptContent = "echo 'Hello again world!'"
-        }
-        script {
-            conditions {
-                matches("teamcity.build.branch", "feature/.*")
-            }
-            scriptContent = "echo 'Hello World (3)'"
+            scriptContent = "echo 'Bye world!'"
         }
    }
 
