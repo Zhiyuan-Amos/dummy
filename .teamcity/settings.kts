@@ -4,7 +4,7 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 
 version = "2021.1"
 
-val dummies = listOf(Dummy("Foo", "foo"), Dummy("Bar", "bar"), Dummy("Baz", "baz"))
+val dummies = listOf(Dummy("Foo", "foo"))
 
 project {
    for (dummy in dummies) {
