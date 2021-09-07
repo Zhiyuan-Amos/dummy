@@ -29,7 +29,7 @@ class HelloWorld(val dummy: Dummy) : BuildType({
         }
         script {
             conditions {
-                matches("teamcity.build.branch", "feature")
+                matches("teamcity.build.branch", "feature/*")
             }
             scriptContent = "echo 'Hello World (3)'"
         }
