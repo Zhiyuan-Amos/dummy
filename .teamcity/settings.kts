@@ -27,11 +27,29 @@ class HelloWorld(val dummy: Dummy) : BuildType({
         script {
             scriptContent = "echo 'Hello again world!'"
         }
+        script {
+            conditions {
+                matches("teamcity.build.branch", "releases/foo-*")
+            }
+            scriptContent = "echo 'Hello World (3)'"
+        }
    }
 
    triggers {
        vcs {
-           branchFilter = "+:releases/${dummy.branchName}-*"
+           triggerRules = """
+               +:parentDirectory/${dummy.folderName}/**
+           """.trimIndent()
+           branchFilter = """
+               +:*
+               -:releases/*
+               -:hotfix/*
+               +:releases/${dummy.branchName}-*
+               +:hotfix/${dummy.branchName}-*
+           """.trimIndent()
+           perCheckinTriggering = true
+           groupCheckinsByCommitter = true
+           enableQueueOptimization = false
        }
    }
 })
