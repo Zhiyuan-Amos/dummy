@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/deploy/action
+        with:
+          foo: ${{ secrets.foo }}
+          bar: ${{ vars.bar }}
