@@ -1,0 +1,14 @@
+name: 'Deploy'
+inputs:
+  foo:
+    required: true
+  bar:
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+    - name: Set env variable
+      run: |
+        echo "foo=${{ inputs.foo }}" >> $GITHUB_ENV
+        echo "bar=${{ inputs.bar }}" >> $GITHUB_ENV
