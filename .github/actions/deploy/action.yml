@@ -4,16 +4,17 @@ inputs:
     required: true
   bar:
     required: true
-defaults:
-  run:
-    shell: bash
+    
 runs:
   using: "composite"
   steps:
     - uses: actions/checkout@v3
     - name: Set env variable
+      shell: bash
       run: |
         echo "foo=${{ inputs.foo }}" >> $GITHUB_ENV
         echo "bar=${{ inputs.bar }}" >> $GITHUB_ENV
         echo "${{ inputs.foo }}" >> foo.txt
         echo "${{ inputs.bar }}" >> bar.txt
+        git tag 1.0
+        git push origin tag 1.0
